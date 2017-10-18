@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 
 /**
  * 招股金服

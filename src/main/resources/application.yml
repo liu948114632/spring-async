@@ -2,3 +2,17 @@ server:
   port: 1000
   session:
     timeout: 30
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 10000
+#    纯数字会当做int类型处理，拿到的是699
+    password: "0669"
+    pool:
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 1
+      max-active: 5
+    database: 1
+#type: com.alibaba.druid.pool.DruidDataSource

@@ -62,6 +62,7 @@ public class RedisController {
 
     @RequestMapping("/publish/{msg}")
     public void publish(@PathVariable("msg") String msg){
-        redisService.publish(msg);
+        redisService.publish("hello",msg);
+        redisService.publish("hi","skfhdsbgfabsg");
     }
 }

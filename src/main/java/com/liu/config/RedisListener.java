@@ -18,7 +18,7 @@ public class RedisListener {
     private StringRedisService stringRedisService;
 
     //开启redis监听，不同频道线程不同
-    @PostConstruct
+//    @PostConstruct
     public void subscribe(){
         stringRedisService.subscribe("hello");
         stringRedisService.subscribe("hi");

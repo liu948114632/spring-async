@@ -105,29 +105,17 @@ public class StringRedisService {
      * 发送
      * @param message
      */
-    public void publish(String message){
-        stringRedisTemplate.convertAndSend("hello",message);
-        stringRedisTemplate.convertAndSend("hi","sdghasdfhkwhf21349234yb");
+    public void publish(String channel ,String message){
+        stringRedisTemplate.convertAndSend(channel,message);
         LOGGER.info("使用redis消息中间件发送消息");
     }
 
     public void subscribe(String channel){
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                stringRedisTemplate.execute(new RedisCallback<String>() {
-                    public String doInRedis(RedisConnection connection) {
-                        connection.subscribe(new MessageListener() {
-                            @Override
-                            public void onMessage(Message message, byte[] bytes) {
-                                LOGGER.info(message.toString());
-                            }
-                        }, channel.getBytes());
-                        return null;
-                    }
-                });
+        executorService.execute(() -> stringRedisTemplate.execute(new RedisCallback<String>() {
+            public String doInRedis(RedisConnection connection) {
+                connection.subscribe((message, bytes) -> LOGGER.info(message.toString()), channel.getBytes());
+                return null;
             }
-        });
-
+        }));
     }
 }

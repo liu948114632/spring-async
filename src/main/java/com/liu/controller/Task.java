@@ -23,7 +23,7 @@ public class Task {
         long start = System.currentTimeMillis();
         Thread.sleep(random.nextInt(10000));
         long end = System.currentTimeMillis();
-        System.out.println("完成任务一，耗时：" + (end - start) + "毫秒");
+        System.out.println(Thread.currentThread().getName()+"完成任务一，耗时：" + (end - start) + "毫秒");
         return new AsyncResult<>("任务一完成");
     }
     @Async
@@ -32,7 +32,7 @@ public class Task {
         long start = System.currentTimeMillis();
         Thread.sleep(random.nextInt(10000));
         long end = System.currentTimeMillis();
-        System.out.println("完成任务二，耗时：" + (end - start) + "毫秒");
+        System.out.println(Thread.currentThread().getName()+"完成任务二，耗时：" + (end - start) + "毫秒");
         return new AsyncResult<>("任务二完成");
     }
 }

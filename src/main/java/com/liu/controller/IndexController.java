@@ -25,7 +25,7 @@ public class IndexController {
     public ExecutorService executorService;
 
     @MyAnnotation(value = "这个是index方法")
-    @RequestMapping("/")
+    @RequestMapping(value = "/")
     public String index(HttpSession session){
         String  s=session.getId();
         return "hello";
@@ -51,7 +51,7 @@ public class IndexController {
     }
 
 
-    @MyAnnotation("这个方法是测试同步的")
+    @MyAnnotation("这个方法是测试异步的")
     @RequestMapping("/hello")
     public void sync() throws Exception{
         long start = System.currentTimeMillis();

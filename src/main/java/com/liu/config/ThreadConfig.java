@@ -2,7 +2,10 @@ package com.liu.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,4 +22,11 @@ public class ThreadConfig {
         return Executors.newFixedThreadPool(100);
     }
 
+    public static HttpServletRequest getCurrentRequest() throws IllegalStateException {
+        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attrs == null) {
+            throw new IllegalStateException("当前线程中不存在 Request 上下文");
+        }
+        return attrs.getRequest();
+    }
 }

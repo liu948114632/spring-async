@@ -1,5 +1,6 @@
 package com.liu.controller;
 
+import com.liu.annotation.MyAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,12 +24,14 @@ public class IndexController {
     @Autowired
     public ExecutorService executorService;
 
+    @MyAnnotation(value = "这个是index方法")
     @RequestMapping("/")
     public String index(HttpSession session){
         String  s=session.getId();
         return "hello";
     }
 
+    @MyAnnotation("这个方法是测试线程池的")
     @RequestMapping("/fun")
     public void fun(){
         for(int j=0;j<10;j++){
@@ -48,6 +51,7 @@ public class IndexController {
     }
 
 
+    @MyAnnotation("这个方法是测试同步的")
     @RequestMapping("/hello")
     public void sync() throws Exception{
         long start = System.currentTimeMillis();

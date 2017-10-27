@@ -11,8 +11,15 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching
 //@ServletComponentScan
 public class MySpringApplication {
+	public static void changeStr(int s){
+		s=++s;
+		System.out.println(s);
+	}
 
 	public static void main(String[] args) {
+		int s = 1;
+		changeStr(s);
+		System.out.println(s);
 
 		SpringApplication.run(MySpringApplication.class, args);
 	}

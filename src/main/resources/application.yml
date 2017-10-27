@@ -15,4 +15,12 @@ spring:
       min-idle: 1
       max-active: 5
     database: 1
+  rabbitmq:
+    host: 192.168.0.118
+    port: 5672
+    username: dev1
+    password: dev1
+    virtual-host: /vhost1
+#    publisher-confirms: true
+
 #type: com.alibaba.druid.pool.DruidDataSource
